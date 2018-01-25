@@ -25,13 +25,14 @@
 </head>
 
 <body class="index-page">
- <div class="section section-full-screen" style="background-image: url('material-bootstrap/assets/img/fondo.jpg'); background-size: cover; min-height: 650px;">
+ <div class="section section-full-screen" style="background-image: url('material-bootstrap/assets/img/fondo.jpg'); background-size: cover; min-height: 700px;">
             <div class="container-fluid">
-                    <div class="col-md-7 col-md-offset-5">
+                    <div class="col-md-4 col-md-offset-7">
                         <div class="card card-signup">
-                            <form class="form" method="" action="">
+                            <form role="form" id="form_user">
+                            {{ csrf_field() }}
                                 <div class="header header-primary text-center">
-                                    <h4>FORMULARIO DE CONOCIMIENTO PREVIO</h4>
+                                    <h4>FORMULARIO DATOS PERSONALES</h4>
                                 </div>
                                 <div class="content">
                                     <div class="row">
@@ -40,7 +41,7 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Rut">
+                                            <input type="text" id="rut" name="rut" class="form-control" placeholder="Rut">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -48,7 +49,7 @@
                                             <span class="input-group-addon">
                                                
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Nombre Completo">
+                                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre Completo">
                                         </div>
                                         </div>
                                     </div>
@@ -58,7 +59,7 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Email">
+                                            <input type="text" id="email" name="email" class="form-control" placeholder="Email">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -66,7 +67,7 @@
                                             <span class="input-group-addon">
                                                
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Teléfono">
+                                            <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Teléfono">
                                         </div>
                                         </div>
                                     </div>
@@ -76,7 +77,7 @@
                                             <span class="input-group-addon">
                                                
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Peso">
+                                            <input type="text" id="peso" name="peso" class="form-control" placeholder="Peso">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -84,7 +85,7 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Nacionalidad">
+                                            <input type="text" id="nacionalidad" name="nacionalidad" class="form-control" placeholder="Nacionalidad">
                                         </div>
                                         </div>
                                     </div>
@@ -94,7 +95,7 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Fecha de Nacimiento">
+                                            <input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Fecha de Nacimiento">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -102,20 +103,17 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Edad">
+                                            <input type="text" id="edad" name="edad" class="form-control" placeholder="Edad">
                                         </div>
                                         </div>
                                     </div>
-                                    
-                                  
-                                </div>
-                                <div class="footer text-center">
-                                    <a href="#pablo" class="btn btn-simple btn-primary btn-lg">Guardar</a>
                                 </div>
                             </form>
+                            <div class="footer text-left">
+                                <a href="#" id="enviar_datos" class="btn btn-simple btn-primary btn-md">Enviar</a>
+                            </div>
                         </div>
                     </div>
-        
                 </div>
             </div>
 </body>
@@ -132,20 +130,9 @@
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="material-bootstrap/assets/js/material-kit.js" type="text/javascript"></script>
+    <script src="material-bootstrap/assets/js/ajax.js" type="text/javascript"></script>
 
     <script type="text/javascript">
 
-        $().ready(function(){
-            // the body of this function is in assets/material-kit.js
-            materialKit.initSliders();
-            window_width = $(window).width();
-
-            if (window_width >= 992){
-                big_image = $('.wrapper > .header');
-
-                $(window).on('scroll', materialKitDemo.checkScrollForParallax);
-            }
-
-        });
     </script>
 </html>

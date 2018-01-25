@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::resource('/datos_user', 'DatosEncuestaController');
