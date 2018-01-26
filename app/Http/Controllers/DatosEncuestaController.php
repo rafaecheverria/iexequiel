@@ -38,9 +38,9 @@ class DatosEncuestaController extends Controller
         if($request->ajax()){
             $user = new User($request->all());
             $user->save();
-            $user->attachRole(3);
             return response()->json([
-                "user" => $user->id
+                "message" => 'Se registro el usuario',
+                "id_user" => $user->id
                 ]);
         }
     }

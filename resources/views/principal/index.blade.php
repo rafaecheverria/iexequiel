@@ -25,9 +25,9 @@
 </head>
 
 <body class="index-page">
- <div class="section section-full-screen" style="background-image: url('material-bootstrap/assets/img/fondo.jpg'); background-size: cover; min-height: 700px;">
+ <div class="section section-full-screen" style="background-image: url('material-bootstrap/assets/img/fondo.jpg'); background-size: cover; min-height: auto;">
             <div class="container-fluid">
-                    <div class="col-md-4 col-md-offset-7">
+                    <div class="col-md-6 col-md-offset-6">
                         <div class="card card-signup">
                             <form role="form" id="form_user">
                             {{ csrf_field() }}
@@ -49,17 +49,36 @@
                                             <span class="input-group-addon">
                                                
                                             </span>
-                                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre Completo">
+                                            <input type="text" id="nombres" name="nombres" class="form-control" placeholder="Nombres">
                                         </div>
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                            <span class="input-group-addon">
+                                               
+                                            </span>
+                                            <input type="text" id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos">
+                                        </div>
+                                        </div>
                                         <div class="col-md-6"> 
                                             <div class="input-group">
                                             <span class="input-group-addon">
                                                 
                                             </span>
                                             <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6"> 
+                                            <div class="input-group">
+                                            <span class="input-group-addon">
+                                               
+                                            </span>
+                                            <input type="text" id="peso" name="peso" class="form-control" placeholder="Peso">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -75,9 +94,9 @@
                                         <div class="col-md-6"> 
                                             <div class="input-group">
                                             <span class="input-group-addon">
-                                               
+                                                
                                             </span>
-                                            <input type="text" id="peso" name="peso" class="form-control" placeholder="Peso">
+                                            <input type="date" id="nacimiento" name="nacimiento" class="form-control" placeholder="Fecha de Nacimiento">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -89,28 +108,11 @@
                                         </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6"> 
-                                            <div class="input-group">
-                                            <span class="input-group-addon">
-                                                
-                                            </span>
-                                            <input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Fecha de Nacimiento">
-                                        </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                            <span class="input-group-addon">
-                                                
-                                            </span>
-                                            <input type="text" id="edad" name="edad" class="form-control" placeholder="Edad">
-                                        </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </form>
                             <div class="footer text-left">
                                 <a href="#" id="enviar_datos" class="btn btn-simple btn-primary btn-md">Enviar</a>
+                                <a href="#" data-toggle="modal" data-target="#add_question" class="btn btn-simple btn-primary btn-md">mod</a>
                             </div>
                         </div>
                     </div>
@@ -136,3 +138,4 @@
 
     </script>
 </html>
+@include('principal.modal')
