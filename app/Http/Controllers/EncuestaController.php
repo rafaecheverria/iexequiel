@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Question;
 use App\User;
+use Illuminate\Http\Request;
+use App\Http\Requests\EncuestaRequest;
 
-class DatosEncuestaController extends Controller
+class EncuestaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,14 +35,15 @@ class DatosEncuestaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(EncuestaRequest $request)
     {
-        if($request->ajax()){
-            $user = new User($request->all());
-            $user->save();
+         if($request->ajax()){
+            $e = new Question($request->all());
+            $e->save();
+            User::find($request->user_id)->update(['questions_id' => $e->id]);
             return response()->json([
-                "message" => 'Sus datos han sido guardados, debe completar el siguiente formulario para finalizar la inscripción',
-                "id_user" => $user->id
+                "message" => 'La información ha sido enviada correctamente',
+
                 ]);
         }
     }

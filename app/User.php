@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'rut', 'nombres','apellidos', 'password', 'email', 'telefono', 'peso', 'nacionalidad', 'nacimiento'
+    'rut', 'nombres','apellidos', 'password', 'email', 'telefono', 'peso', 'nacionalidad', 'nacimiento', 'questions_id'
     ];
 
     /**
@@ -23,6 +23,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+     public function question()
+    {
+        return $this->hasOne('App\Question');
+    }
+
+
     protected $hidden = [
         'password', 'remember_token',
     ];

@@ -5,22 +5,28 @@
     <link rel="apple-touch-icon" sizes="76x76" href="material-bootstrap/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="material-bootstrap/assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Material Kit by Creative Tim</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href=" https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+
+   
 
     <!-- CSS Files -->
     <link href="material-bootstrap/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="material-bootstrap/assets/css/material-kit.css" rel="stylesheet"/>
-
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="material-bootstrap/assets/css/demo.css" rel="stylesheet" />
+    <link href="material-bootstrap/assets/css/style.css" rel="stylesheet" />
+    <link href="material-bootstrap/assets/css/toastr.css" rel="stylesheet" />
+
 
 </head>
 
@@ -29,7 +35,7 @@
             <div class="container-fluid">
                     <div class="col-md-6 col-md-offset-6">
                         <div class="card card-signup">
-                            <form role="form" id="form_user">
+                            <form role="form" id="form-user">
                             {{ csrf_field() }}
                                 <div class="header header-primary text-center">
                                     <h4>FORMULARIO DATOS PERSONALES</h4>
@@ -96,7 +102,7 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="date" id="nacimiento" name="nacimiento" class="form-control" placeholder="Fecha de Nacimiento">
+                                            <input type="text" id="nacimiento" name="nacimiento" class="form-control datepicker" placeholder="Fecha de Nacimiento">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -111,8 +117,7 @@
                                 </div>
                             </form>
                             <div class="footer text-left">
-                                <a href="#" id="enviar_datos" class="btn btn-simple btn-primary btn-md">Enviar</a>
-                                <a href="#" data-toggle="modal" data-target="#add_question" class="btn btn-simple btn-primary btn-md">mod</a>
+                                <a href="#" id="enviar_datos" class="btn btn-simple btn-primary btn-md">Llenar Formulario</a>
                             </div>
                         </div>
                     </div>
@@ -123,6 +128,7 @@
     <script src="material-bootstrap/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="material-bootstrap/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="material-bootstrap/assets/js/material.min.js"></script>
+    <script src="material-bootstrap/assets/js/datepicker-es.js" type="text/javascript"></script>
 
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="material-bootstrap/assets/js/nouislider.min.js" type="text/javascript"></script>
@@ -132,7 +138,10 @@
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="material-bootstrap/assets/js/material-kit.js" type="text/javascript"></script>
+    
+
     <script src="material-bootstrap/assets/js/ajax.js" type="text/javascript"></script>
+    <script src="material-bootstrap/assets/js/toastr.js" type="text/javascript"></script>
 
     <script type="text/javascript">
 

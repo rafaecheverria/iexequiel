@@ -3000,7 +3000,7 @@ h2.title {
 }
 
 .modal .modal-dialog {
-  margin-top: 100px;
+  margin-top: 10px;
 }
 .modal .modal-header .close {
   color: #555555;
@@ -3742,5 +3742,3 @@ h2.title {
     margin-right: 10px;
   }
 }
-
-/*# sourceMappingURL=material-kit.css.map */
