@@ -24,15 +24,15 @@ class EncuestaRequest extends FormRequest
     public function rules()
     {
         return [
-            'p1'   => 'required|max:255',
-            'p2'   => 'required|max:255',
-            'p3'   => 'required|max:255',
-            'p4'   => 'required|max:255',
-            'p5'   => 'required|min:6|numeric',
-            'p6'   => 'required|email|max:255|unique:users,email',
-            'p7'   => 'required|max:255',
-            'p8'   => 'required|max:255',
-            'p9'   => 'required|max:255',
+            'p1'   => 'required',
+            'p2'   => 'required',
+            'p3'   => 'required',
+            'p4'   => 'required',
+            'p5'   => 'required',
+            'p6'   => 'required',
+            'p7'   => 'required',
+            'p8'   => 'required',
+            'p9'   => 'required',
         ];
     }
 

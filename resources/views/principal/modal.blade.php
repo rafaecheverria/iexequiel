@@ -146,7 +146,6 @@
                 </div>
             </div>
             <div class="modal-footer text-center">
-                <a href="#" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</a>
                 <a href="#" id="save-question" class="btn btn-primary pull-right">Guardar</a>
             </div>
         </div>

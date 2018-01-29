@@ -1,5 +1,11 @@
 $(document).ready(function() {
-    $("#nacimiento").datepicker( $.datepicker.regional["es"] );
+
+listar_personas();
+
+$('#nacimiento').datepicker({
+
+    format: 'yyyy/mm/dd',
+});
 
     toastr.options = {
           "closeButton": true,
@@ -16,6 +22,7 @@ $(document).ready(function() {
           "showMethod": "fadeIn",
           "hideMethod": "fadeOut"
         }
+
 
  $("#p3-text").hide();
  $("#p4-text").hide();
@@ -108,6 +115,7 @@ $(document).ready(function() {
         event.preventDefault();
         var dataString  = $( '#form-user' ).serializeArray();
         var route = "datos_user";
+        console.log(dataString)
         $.ajax({
             url: route,
             type: 'post',
@@ -116,7 +124,13 @@ $(document).ready(function() {
             success:function(data){
                 console.log(data);
                 $("#user_id").val(data.id_user)
-                $("#add_question").modal("show")
+                $("#add_question").modal({
+
+                    show: "true",
+                    backdrop: 'static', 
+                    keyboard: false
+
+                })
                 toastr["info"](data.message)
             },
             error:function(data){

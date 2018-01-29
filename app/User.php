@@ -18,6 +18,8 @@ class User extends Authenticatable
     'rut', 'nombres','apellidos', 'password', 'email', 'telefono', 'peso', 'nacionalidad', 'nacimiento', 'questions_id'
     ];
 
+    protected $table = "users";
+
     /**
      * The attributes that should be hidden for arrays.
      *

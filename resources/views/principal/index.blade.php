@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href=" https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
 
    
@@ -24,6 +25,7 @@
     <link href="material-bootstrap/assets/css/material-kit.css" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="material-bootstrap/assets/css/demo.css" rel="stylesheet" />
+
     <link href="material-bootstrap/assets/css/style.css" rel="stylesheet" />
     <link href="material-bootstrap/assets/css/toastr.css" rel="stylesheet" />
 
@@ -84,7 +86,7 @@
                                             <span class="input-group-addon">
                                                
                                             </span>
-                                            <input type="text" id="peso" name="peso" class="form-control" placeholder="Peso">
+                                            <input type="number" id="peso" name="peso" class="form-control" placeholder="Peso">
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -102,7 +104,7 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="text" id="nacimiento" name="nacimiento" class="form-control datepicker" placeholder="Fecha de Nacimiento">
+                                            <input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Fecha de Nacimiento" data-date-format="yyyy-mm-dd" readonly="true" />
                                         </div>
                                         </div>
                                         <div class="col-md-6">
@@ -110,7 +112,16 @@
                                             <span class="input-group-addon">
                                                 
                                             </span>
-                                            <input type="text" id="nacionalidad" name="nacionalidad" class="form-control" placeholder="Nacionalidad">
+                                            <select id="nacionalidad" name="nacionalidad" class="form-control">
+                                                <option value="">-- Seleccione Nacionalidad --</option>
+                                                <option value="chileno">Chileno</option>
+                                                <option value="argentino">Argentino</option>
+                                                <option value="peruano">Peruano</option>
+                                                <option value="uruguayo">Uruguayo</option>
+                                                <option value="paraguayo">Paraguayo</option>
+                                                <option value="brasileno">Brasileño</option>
+                                                <option>Otro</option>
+                                            </select> 
                                         </div>
                                         </div>
                                     </div>
@@ -126,19 +137,18 @@
 </body>
     <!--   Core JS Files   -->
     <script src="material-bootstrap/assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="material-bootstrap/assets/js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="material-bootstrap/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="material-bootstrap/assets/js/material.min.js"></script>
-    <script src="material-bootstrap/assets/js/datepicker-es.js" type="text/javascript"></script>
 
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="material-bootstrap/assets/js/nouislider.min.js" type="text/javascript"></script>
+        <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
-    <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-    <script src="material-bootstrap/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="material-bootstrap/assets/js/material-kit.js" type="text/javascript"></script>
-    
+    <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+    <script src="material-bootstrap/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
     <script src="material-bootstrap/assets/js/ajax.js" type="text/javascript"></script>
     <script src="material-bootstrap/assets/js/toastr.js" type="text/javascript"></script>
