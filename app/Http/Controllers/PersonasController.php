@@ -14,7 +14,7 @@ class PersonasController extends Controller
      */
     public function index()
     {
-        //
+        return view("personas.index");
     }
 
     /**
@@ -46,15 +46,19 @@ class PersonasController extends Controller
      */
     public function show()
     {
-         $users = User::selectRaw('distinct users.*');
-        return  datatables()
-                ->of($users)
-                })->addColumn('action', function ($user) {
-                return '<a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target="#roleModal"><i class="material-icons">settings_brightness</i></a>
-                        <a href="#" id="update"  class="btn btn-simple btn-success btn-icon edit"><i class="material-icons">edit</i></a>
-                        <a href="#" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
+         $users = User::select(['id', 'rut','nombres','apellidos', 'nacimiento']);
+
+        return datatables()->of($users)
+                ->editColumn('nacimiento', function ($user) {
+                return $user->getEdad();
+                })
+                ->addColumn('action', function ($user) {
+                return '<a href="doctores/'.$user->id.'/edit" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">description</i></a>
+                        <a href="doctores/'.$user->id.'/edit" id="update"  class="btn btn-simple btn-success btn-icon edit"><i class="material-icons">edit</i></a>
+                        <a href="#" onclick="eliminar_doc('.$user->id.')" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
             })->make(true);
     }
+
 
     /**
      * Show the form for editing the specified resource.

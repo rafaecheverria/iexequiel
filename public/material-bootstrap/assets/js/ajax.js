@@ -1,27 +1,15 @@
+function redirect(ruta)
+{
+    window.location = ruta;
+    //setTimeout("location."+ruta, 5000);
+}
 $(document).ready(function() {
 
-listar_personas();
 
-$('#nacimiento').datepicker({
-
+$("#nacimiento").datepicker({
     format: 'yyyy/mm/dd',
-});
-
-    toastr.options = {
-          "closeButton": true,
-          "debug": false,
-          "newestOnTop": false,
-          "positionClass": "toast-bottom-right",
-          "onclick": null,
-          "showDuration": "300",
-          "hideDuration": "1000",
-          "timeOut": "5000",
-          "extendedTimeOut": "1000",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
-        }
+    showAnim: 'fade'
+})
 
 
  $("#p3-text").hide();
@@ -174,3 +162,4 @@ $('#nacimiento').datepicker({
         })
     })
 })
+

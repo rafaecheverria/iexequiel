@@ -38,6 +38,7 @@ class DatosEncuestaController extends Controller
     {
         if($request->ajax()){
             $user = new User($request->all());
+            $user->estado = "Pendiente";
             $user->save();
             return response()->json([
                 "message" => 'Sus datos han sido guardados, debe completar el siguiente formulario para finalizar la inscripción',

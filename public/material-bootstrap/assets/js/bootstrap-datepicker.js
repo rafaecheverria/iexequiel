@@ -125,9 +125,9 @@
 			var datepicker = this.picker;
 			datepicker.removeClass('open');
 			
-			setTimeout(function(){
+			//setTimeout(function(){
     			this.picker.hide();
-			}, 500);
+			//}, 500);
 			
 			$(window).off('resize', this.place);
 			this.viewMode = this.startViewMode;
@@ -386,11 +386,11 @@
 				navStep: 10
 		}],
 		dates:{
-			days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-			daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-			daysMin: ["S", "M", "T", "W", "T", "F", "S", "S"],
-			months: ["JAN.", "FEB.", "MAR.", "APR.", "MAY", "JUN.", "JUL.", "AUG.", "SEPT.", "OCT.", "NOV.", "DEC."],
-			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+			days: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+			daysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"],
+			daysMin: ["D", "L", "M", "M", "J", "V", "S", "D"],
+			months: ["ENE.", "FEB.", "MAR.", "ABR.", "MAY", "JUN.", "JUL.", "AGO.", "SEPT.", "OCT.", "NOV.", "DIC."],
+			monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 		},
 		isLeapYear: function (year) {
 			return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))

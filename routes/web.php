@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/inicio', 'HomeController@inicio')->middleware('auth');
+Route::resource('/personas', 'PersonasController')->middleware('auth');
 
 Route::resource('/datos_user', 'DatosEncuestaController');
 Route::resource('/question', 'EncuestaController');

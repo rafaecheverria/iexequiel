@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
@@ -14,23 +15,22 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-    'rut', 'nombres','apellidos', 'password', 'email', 'telefono', 'peso', 'nacionalidad', 'nacimiento', 'questions_id'
-    ];
-
     protected $table = "users";
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    protected $fillable = [
+    'id', 'rut', 'nombres','apellidos', 'password', 'email', 'telefono', 'peso', 'nacionalidad', 'nacimiento', 'questions_id', 'estado'
+    ];
+   
+    protected $dates = ['nacimiento'];
 
      public function question()
     {
         return $this->hasOne('App\Question');
     }
 
+    public function getEdad(){
+        return $this->nacimiento->diffInYears(now());
+    }
 
     protected $hidden = [
         'password', 'remember_token',
