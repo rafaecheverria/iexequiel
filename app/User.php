@@ -16,20 +16,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = "users";
-
     protected $fillable = [
     'id', 'rut', 'nombres','apellidos', 'password', 'email', 'telefono', 'peso', 'nacionalidad', 'nacimiento', 'questions_id', 'estado'
     ];
    
-    protected $dates = ['nacimiento'];
+   protected $appends = ['years'];
 
      public function question()
     {
         return $this->hasOne('App\Question');
     }
 
-    public function getEdad(){
+    /*public function getEdad(){
         return $this->nacimiento->diffInYears(now());
+        return Carbon::parse($this->nacimiento)->age; // 1990-10-25
+    }*/
+
+    public function getYearsAttribute()
+    {
+        return Carbon::parse($this->nacimiento)->age;
     }
 
     protected $hidden = [

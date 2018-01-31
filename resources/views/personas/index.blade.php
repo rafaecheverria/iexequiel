@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <div class="content">
     <div class="container-fluid">
         <div class="card">
@@ -23,5 +21,8 @@
 		</div>
 	</div>
 </div>
+@include('personas.up-persona')
+@include('personas.up-encuesta')
 @endsection
+
 

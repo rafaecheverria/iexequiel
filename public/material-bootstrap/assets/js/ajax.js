@@ -1,16 +1,14 @@
 function redirect(ruta)
 {
     window.location = ruta;
-    //setTimeout("location."+ruta, 5000);
 }
-$(document).ready(function() {
 
+$(document).ready(function() {
 
 $("#nacimiento").datepicker({
     format: 'yyyy/mm/dd',
     showAnim: 'fade'
 })
-
 
  $("#p3-text").hide();
  $("#p4-text").hide();
@@ -18,7 +16,6 @@ $("#nacimiento").datepicker({
  $("#p6-text").hide();
  $("#p7-text").hide();
  $("#p9-text").hide();
-
 
  $( "#p3-si" ).click(function(event){
     $('#p3-text').removeAttr('disabled');
@@ -113,7 +110,6 @@ $("#nacimiento").datepicker({
                 console.log(data);
                 $("#user_id").val(data.id_user)
                 $("#add_question").modal({
-
                     show: "true",
                     backdrop: 'static', 
                     keyboard: false

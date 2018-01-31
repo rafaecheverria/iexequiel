@@ -67,7 +67,20 @@ class EncuestaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $encuesta = Question::findOrFail($id);      
+        return response()->json([
+            'success'   => true,
+            'id'        => $encuesta->id,
+            'p1'        => $encuesta->p1,
+            'p2'        => $encuesta->p2,
+            'p3'        => $encuesta->p3,
+            'p4'        => $encuesta->p4,
+            'p5'        => $encuesta->p5,
+            'p6'        => $encuesta->p6,
+            'p7'        => $encuesta->p7,
+            'p8'        => $encuesta->p8,
+            'p9'        => $encuesta->p9,
+        ]);
     }
 
     /**
@@ -79,7 +92,14 @@ class EncuestaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->ajax()){
+            $encuesta = Question::findOrFail($id);
+            $encuesta->fill($request->all());
+            $encuesta->save();
+            return response()->json([
+                "message" => "La encuesta ha sido modificada con éxito !"
+                ]);
+        }
     }
 
     /**
