@@ -12,13 +12,14 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::resource('/datos_user', 'DatosEncuestaController');
+Route::resource('/question', 'EncuestaController');
 
 Route::middleware('auth')->group(function(){
 	Route::get('/inicio', 'HomeController@inicio');
 	Route::resource('/personas', 'PersonasController');
 	Route::resource('/aventuras', 'AventuraController');
-	Route::resource('/datos_user', 'DatosEncuestaController');
-	Route::resource('/question', 'EncuestaController');
+	Route::resource('/user-aventura', 'UserAventuraController');
 });
 
 

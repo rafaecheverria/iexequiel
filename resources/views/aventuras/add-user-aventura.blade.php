@@ -11,19 +11,15 @@
                     <div class="col-md-12">
                         <form role="form" id="form-add-user-aventura">
                         {{ csrf_field() }}
-                            <input id="id" name="id" hidden="true" />
+                            <input id="id_av" name="id" hidden="true" />
                             <div class="content">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                
-                                            </span>
-                                            <select id="select-add-user-aventura" name="select-add-user-aventura[]" data-style="select-with-transition" class="form-control selectpicker" data-live-search="true" multiple="multiple">
-                                                <option value="">-- Seleccione personas --</option>
+                                        <div class="form-group label-floating">
+                                            <select id="select-add-user-aventura" name="add_user_aventura[]" data-style="select-with-transition" class="form-control selectpicker" data-live-search="true" multiple="multiple">
                                                  @foreach($personas as $persona)
-                                            <option value="{{ $persona->id }}">{{ $persona->apellidos }} {{ $persona->nombres }}</option>
-                                        @endforeach
+                                                    <option value="{{ $persona->id }}">{{ $persona->apellidos }} {{ $persona->nombres }}</option>
+                                                @endforeach
                                             </select> 
                                         </div>
                                     </div>
@@ -35,7 +31,7 @@
             </div>
             <div class="modal-footer text-center">
                 <a href="#" class="btn btn-warning pull-right" data-dismiss="modal">Cancelar</a>
-                <a href="#" id="update-aventura" class="btn btn-primary pull-right">Guardar</a>
+                <a href="#" id="btn-add-user-aventura" class="btn btn-primary pull-right">Guardar</a>
             </div>
         </div>
     </div>

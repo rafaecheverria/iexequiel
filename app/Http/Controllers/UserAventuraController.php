@@ -6,7 +6,7 @@ use App\Aventura;
 use App\User;
 use Illuminate\Http\Request;
 
-class AventuraController extends Controller
+class UserAventuraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class AventuraController extends Controller
      */
     public function index()
     {
-        $personas = User::all();
-        return view("aventuras.index", compact("personas"));
+        //
     }
 
     /**
@@ -46,14 +45,9 @@ class AventuraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $aventuras = Aventura::select(['id','nombre','fecha','estado'])->where('estado', 'pendiente');
-
-        return datatables()->of($aventuras)
-                ->addColumn('action', function ($aventura) {
-                return '<a href="#" onclick="loadModalAventura('.$aventura->id.')" data-toggle="modal" data-target="#up-aventura-modal" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a><a href="#" class="btn btn-simple btn-success btn-icon"><i class="material-icons">group</i></a><a href="#" onclick="loadModalAddAventura('.$aventura->id.')" data-toggle="modal" data-target="#add-user-aventura-modal" class="btn btn-simple btn-info btn-icon"><i class="material-icons">group_add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
-            })->make(true);
+        //
     }
 
     /**
@@ -64,13 +58,15 @@ class AventuraController extends Controller
      */
     public function edit($id)
     {
-        $aventura = Aventura::findOrFail($id);      
+        $aventura = Aventura::findOrFail($id);
+        $personas = User::orderBy('nombres', 'DESC')->pluck('apellidos', 'id');
+        $my_persona = $aventura->users->pluck('id')->ToArray();
+        
         return response()->json([
-            'success'      => true,
-            'id'           => $aventura->id,
-            'fecha'        => $aventura->fecha,
-            'nombre'       => $aventura->nombre,
-            'estado'       => $aventura->estado,
+            'success'    => true,
+            'id'         => $aventura->id,
+            'personas'   => $personas,
+            'my_persona' => $my_persona
         ]);
     }
 
@@ -83,13 +79,13 @@ class AventuraController extends Controller
      */
     public function update(Request $request, $id)
     {
-       if($request->ajax()){
+        if($request->ajax()){
             $aventura = Aventura::findOrFail($id);
-            $aventura->fill($request->all());
-            $aventura->save();
+            $aventura->users()->sync($request->add_user_aventura);   
             return response()->json([
-                "message" => "La aventura ha sido modificada exitosamente !"
+                "message" => "Se han agregado las personas seleccionadas a la aventura !"
                 ]);
+           
         }
     }
 

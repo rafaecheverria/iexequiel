@@ -14,19 +14,19 @@
                     <li class="active">
                         <a href="dashboard.html">
                             <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
+                            <p>Inicio</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./user.html">
+                        <a href="{{url('/personas')}}">
                             <i class="material-icons">person</i>
-                            <p>User Profile</p>
+                            <p>Personas</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./table.html">
+                        <a href="{{url('/aventuras')}}">
                             <i class="material-icons">content_paste</i>
-                            <p>Table List</p>
+                            <p>Aventuras</p>
                         </a>
                     </li>
                     <li>

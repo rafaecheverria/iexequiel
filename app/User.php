@@ -20,13 +20,12 @@ class User extends Authenticatable
     'id', 'rut', 'nombres','apellidos', 'password', 'email', 'telefono', 'peso', 'nacionalidad', 'nacimiento', 'questions_id', 'estado'
     ];
    
-   protected $appends = ['years'];
-
+    protected $appends = ['years'];
 
     
     public function aventuras()
     {
-        return $this->belongsToMany('App\Aventuras');
+        return $this->belongsToMany('App\Aventura');
     }
      public function question()
     {

@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <form id="form-up-encuesta">
                             {{ csrf_field() }}
-                            <input type="text" id="id-encuesta" name="id">
+                            <input type="text" id="id-encuesta" name="id" hidden="true">
                             <div class="row">
                                 <h6 class="label-on-left"><b>1.  ¿Tiene experiencia en Trekking? </b></h6>
                                 <div class="col-md-8">

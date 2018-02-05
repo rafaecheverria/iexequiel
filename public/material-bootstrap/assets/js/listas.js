@@ -40,6 +40,7 @@ $(document).ready(function() {
             data:dataString,
             success:function(data){
                  $('#personas').DataTable().ajax.reload();
+                 $("#up-persona-modal").modal("hide")
                  $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000});
             },
              error:function(data){
@@ -66,13 +67,39 @@ $( "#update-aventura" ).click(function(event){
             success:function(data){
                  $('#aventuras').DataTable().ajax.reload();
                  $("#up-aventura-modal").modal("hide");
-                 $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000});
+                 $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000})
             },
              error:function(data){
               var error = data.responseJSON.errors;
                 for(var i in error){
                     var message = error[i];
-                    $.notify({icon: "add_alert", message: message},{type: 'warning', timer: 1000});
+                    $.notify({icon: "add_alert", message: message},{type: 'warning', timer: 1000})
+                }
+            }
+        })
+    })
+
+$( "#btn-add-user-aventura" ).click(function(event){ 
+        event.preventDefault();
+        var id= $( '#id_av' ).val()
+        var route = "/user-aventura/"+id+"";
+        var dataString  = $( '#form-add-user-aventura' ).serializeArray();
+        console.log(dataString)
+        $.ajax({
+            url: route,
+            type: 'PUT',
+            datatype: 'json',
+            data:dataString,
+            success:function(data){
+                 $('#aventuras').DataTable().ajax.reload();
+                 $("#add-user-aventura-modal").modal("hide");
+                 $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000})
+            },
+             error:function(data){
+              var error = data.responseJSON.errors;
+                for(var i in error){
+                    var message = error[i];
+                    $.notify({icon: "add_alert", message: message},{type: 'warning', timer: 1000})
                 }
             }
         })
@@ -89,18 +116,47 @@ $( "#update-encuesta" ).click(function(event){
             datatype: 'json',
             data:dataString,
             success:function(data){
-                 $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000});
+                 $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000})
             },
              error:function(data){
               var error = data.responseJSON.errors;
                 for(var i in error){
                     var message = error[i];
-                    $.notify({icon: "add_alert", message: message},{type: 'warning', timer: 1000});
+                    $.notify({icon: "add_alert", message: message},{type: 'warning', timer: 1000})
                 }
             }
         })
     })
 
+function loadModalAddAventura(id)
+{
+    event.preventDefault();
+   var route = "/user-aventura/"+id+"/edit";
+   var csrf_token = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+           url: route,
+           type: 'GET',
+        success:function(data){
+            $('#id_av').val(data.id)
+            const crearOption = (value, name, selected) => `<option value="${value}"${selected.includes(value) ? ' selected' : ''}>${name}</option>`
+            const obj = data.personas
+            const values = Object.keys(obj)
+            const opciones = values.map(x => crearOption(x, obj[x], data.my_persona))
+            const select = document.getElementById('select-add-user-aventura')
+                  select.innerHTML = ''
+                  opciones.forEach(x => { select.insertAdjacentHTML('beforeend', x) })
+            const valor = data.my_persona
+                 i = 0, size = valor.length
+                      for(i; i < size; i++){
+                    $('select option[value='+valor[i]+']').attr('selected', 'selected')
+                }
+           $('.selectpicker').selectpicker('refresh')
+          },
+       error:function(){
+           alert('la operación falló');
+          }
+    })
+}
 
 function loadModalUser(id)
 {
@@ -121,12 +177,15 @@ function loadModalUser(id)
             $('#telefono').val(data.telefono)
             $('#nacimiento').val(data.nacimiento)
             $('#nacionalidad').val(data.nacionalidad)
+            $('#nacionalidad').selectpicker('refresh')
           },
        error:function(){
            alert('la operación falló');
           }
     })
 }
+
+
 function loadModalAventura(id)
 {
     //alert(id)
@@ -138,6 +197,7 @@ function loadModalAventura(id)
            type: 'GET',
         success:function(data){
             $('#id').val(data.id)
+            $('#id_av').val(data.id)
             $('#nombre').val(data.nombre)
             $('#fecha').val(data.fecha)
             $('#estado').val(data.estado)
@@ -147,26 +207,6 @@ function loadModalAventura(id)
           }
     })
 }
-
-/*function loadModalAddUserAventura(id)
-{
-   event.preventDefault();
-   var route = "/aventuras/"+id+"/edit";
-   var csrf_token = $('meta[name="csrf-token"]').attr('content');
-    $.ajax({
-           url: route,
-           type: 'GET',
-        success:function(data){
-            $('#id').val(data.id)
-            $('#nombre').val(data.nombre)
-            $('#fecha').val(data.fecha)
-            $('#estado').val(data.estado)
-          },
-       error:function(){
-           alert('la operación falló');
-          }
-    })
-}*/
 
 
 function loadEncuestaUser(id)

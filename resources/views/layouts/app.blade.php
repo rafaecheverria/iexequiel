@@ -30,11 +30,11 @@
 <script src="material-bootstrap/assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="material-bootstrap/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="material-bootstrap/assets/js/material.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <script src="material-bootstrap/assets/js/material-dashboard.js?v=1.2.0"></script>
 <script src="material-bootstrap/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <script src="material-bootstrap/assets/js/bootstrap-notify.js"></script>
 <script src="material-bootstrap/assets/js/jquery.datatables.js"></script>
+<script src="material-bootstrap/assets/js/jquery.select-bootstrap.js"></script>
 <script src="material-bootstrap/assets/js/toastr.js" type="text/javascript"></script>
 <script src="material-bootstrap/assets/js/listas.js"></script>
 <script src="material-bootstrap/assets/js/ajax.js" type="text/javascript"></script>
