@@ -71,18 +71,18 @@
                     <div class="row">
                         <div class="col-md-6"> 
                             <div class="input-group">
-                            <span class="input-group-addon">
-                                
-                            </span>
-                            <input type="text" id="nacimiento" name="nacimiento" class="form-control fecha-nacimiento" placeholder="Fecha de Nacimiento" readonly="true" />
-                        </div>
+                                <span class="input-group-addon">
+                                    
+                                </span>
+                                <input type="text" id="nacimiento" name="nacimiento" class="form-control fecha-nacimiento" placeholder="Fecha de Nacimiento" readonly="true" />
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-group">
                             <span class="input-group-addon">
                                 
                             </span>
-                            <select id="nacionalidad" name="nacionalidad" class="form-control">
+                            <select id="nacionalidad" name="nacionalidad" data-style="select-with-transition" class="form-control selectpicker" data-live-search="true">
                                 <option value="">-- Seleccione Nacionalidad --</option>
                                 <option value="chileno">Chileno</option>
                                 <option value="argentino">Argentino</option>
@@ -102,7 +102,6 @@
             </div>
             <div class="modal-footer text-center">
                 <a href="#" class="btn btn-warning pull-right" data-dismiss="modal">Cancelar</a>
-                <a href="#" id="delete_cita" class="btn btn-danger pull-left">Eliminar</a>
                 <a href="#" id="update-user" class="btn btn-primary pull-right">Actualizar</a>
             </div>
         </div>

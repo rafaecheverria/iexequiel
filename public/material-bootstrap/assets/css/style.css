@@ -260,3 +260,13 @@
   padding: 0 0 3px;
   display: block;
 }
+
+.bootstrap-select.btn-group .dropdown-menu li a span.check-mark {
+  display: none;
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+  position: absolute;
+  display: inline-block;
+  right: 15px;
+  font-size: 16px;
+}

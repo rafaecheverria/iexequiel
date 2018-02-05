@@ -7163,3 +7163,48 @@ footer .btn {
         overflow: visible;
     }
 }
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+  position: absolute;
+  display: inline-block;
+  right: 15px;
+  font-size: 16px;
+}
+
+.bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
+  margin-right: 34px;
+}
+.btn-group.bootstrap-select.show-tick.open .select-with-transition {
+  outline: none !important;
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2) !important;
+  background-size: 100% 2px, 100% 1px !important;
+  box-shadow: none;
+  transition-duration: 0.3s !important;
+}
+.select-with-transition {
+  border: 0 !important;
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+  background-size: 0 2px, 100% 0px;
+  background-repeat: no-repeat;
+  background-position: center bottom, center calc(100% - 1px);
+  background-color: transparent !important;
+  transition: background 0s ease-out !important;
+  float: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  color: #3C4858 !important;
+  height: 34px;
+  padding-left: 0 !important;
+  padding-bottom: 5px !important;
+}
+.select-with-transition .caret,
+.select-with-transition .ripple-container {
+  display: none;
+}
+
+.btn-group.bootstrap-select.show-tick.open .select-with-transition {
+  outline: none !important;
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2) !important;
+  background-size: 100% 2px, 100% 1px !important;
+  box-shadow: none;
+  transition-duration: 0.3s !important;
+}

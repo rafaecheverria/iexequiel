@@ -22,15 +22,32 @@ class User extends Authenticatable
    
    protected $appends = ['years'];
 
+
+    
+    public function aventuras()
+    {
+        return $this->belongsToMany('App\Aventuras');
+    }
      public function question()
     {
         return $this->hasOne('App\Question');
     }
-
-    /*public function getEdad(){
-        return $this->nacimiento->diffInYears(now());
-        return Carbon::parse($this->nacimiento)->age; // 1990-10-25
-    }*/
+    public function setNombresAttribute($valor)
+    {
+        $this->attributes['nombres'] = strtolower($valor);
+    }
+    public function getNombresAttribute($valor)
+    {
+        return ucwords($valor);
+    }
+    public function setApellidosAttribute($valor)
+    {
+        $this->attributes['apellidos'] = strtolower($valor);
+    }
+    public function getApellidosAttribute($valor)
+    {
+        return ucwords($valor);
+    }
 
     public function getYearsAttribute()
     {
