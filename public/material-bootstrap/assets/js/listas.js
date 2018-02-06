@@ -13,7 +13,7 @@ $(document).ready(function() {
             // alert(zIndexModal + zIndexFEcha);
             // Re asignamos el valor z-index para mostrar sobre la ventana modal
             $('.datepicker').css('z-index',zIndexModal+1);
-    });
+    })
 
     $("#fecha").datepicker({
         format: 'yyyy/mm/dd',
@@ -26,7 +26,7 @@ $(document).ready(function() {
             // alert(zIndexModal + zIndexFEcha);
             // Re asignamos el valor z-index para mostrar sobre la ventana modal
             $('.datepicker').css('z-index',zIndexModal+1);
-    });
+    })
 
     $( "#update-user" ).click(function(event){ 
         event.preventDefault();
@@ -92,6 +92,7 @@ $( "#btn-add-user-aventura" ).click(function(event){
             data:dataString,
             success:function(data){
                  $('#aventuras').DataTable().ajax.reload();
+                 $('#userAventuras').DataTable().ajax.reload();
                  $("#add-user-aventura-modal").modal("hide");
                  $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000})
             },
@@ -127,6 +128,35 @@ $( "#update-encuesta" ).click(function(event){
             }
         })
     })
+
+function loadModalUserAventura(id)
+{
+    event.preventDefault();
+    var route = "/user-aventura/"+id+"";
+    var table = $('#userAventuras').DataTable({
+        "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        "processing": true,
+        "serverSide": true,
+        "retrieve": true,
+        "paging": false,
+        "order": [[ 2, "asc" ]],
+        "ajax": {
+             "url": route,
+            },
+        "language": {
+            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
+        //"responsive": true,
+        "columns":[
+            {data: 'nombres', name: 'nombres'},
+            {data: 'apellidos', name: 'apellidos'},
+            {data: 'action', name: 'action', orderable: false, searchable: false, class:"text-right"}
+        ],
+    })
+
+
+
+}
 
 function loadModalAddAventura(id)
 {
@@ -291,3 +321,6 @@ var aventuras = function()
         ],
     })
   }
+
+
+

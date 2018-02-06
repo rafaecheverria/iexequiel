@@ -52,7 +52,7 @@ class AventuraController extends Controller
 
         return datatables()->of($aventuras)
                 ->addColumn('action', function ($aventura) {
-                return '<a href="#" onclick="loadModalAventura('.$aventura->id.')" data-toggle="modal" data-target="#up-aventura-modal" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a><a href="#" class="btn btn-simple btn-success btn-icon"><i class="material-icons">group</i></a><a href="#" onclick="loadModalAddAventura('.$aventura->id.')" data-toggle="modal" data-target="#add-user-aventura-modal" class="btn btn-simple btn-info btn-icon"><i class="material-icons">group_add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
+                return '<a href="#" onclick="loadModalAventura('.$aventura->id.')" data-toggle="modal" data-target="#up-aventura-modal" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a><a href="#" onclick="loadModalUserAventura('.$aventura->id.')" data-toggle="modal" data-target="#view-user-aventura-modal" class="btn btn-simple btn-success btn-icon"><i class="material-icons">group</i></a><a href="#" onclick="loadModalAddAventura('.$aventura->id.')" data-toggle="modal" data-target="#add-user-aventura-modal" class="btn btn-simple btn-info btn-icon"><i class="material-icons">group_add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
             })->make(true);
     }
 

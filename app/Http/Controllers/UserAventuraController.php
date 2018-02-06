@@ -47,7 +47,15 @@ class UserAventuraController extends Controller
      */
     public function show($id)
     {
-        //
+        $aventuras = Aventura::find($id)->load('users');
+       /* $users    = User::whereHas('aventuras', function($q) {
+                            $q->where('id', $id);
+                     })->get();*/
+
+        return datatables()->of($aventuras->users)
+                ->addColumn('action', function ($user) {
+                return '<a href="#" onclick="loadModalAventura('.$user->id.')" data-toggle="modal" data-target="#up-aventura-modal" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a><a href="#" onclick="loadModalUserAventura('.$user->id.')" data-toggle="modal" data-target="#view-user-aventura-modal" class="btn btn-simple btn-success btn-icon"><i class="material-icons">group</i></a><a href="#" onclick="loadModalAddAventura('.$user->id.')" data-toggle="modal" data-target="#add-user-aventura-modal" class="btn btn-simple btn-info btn-icon"><i class="material-icons">group_add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
+            })->make(true);
     }
 
     /**
@@ -59,7 +67,7 @@ class UserAventuraController extends Controller
     public function edit($id)
     {
         $aventura = Aventura::findOrFail($id);
-        $personas = User::orderBy('nombres', 'DESC')->pluck('apellidos', 'id');
+        $personas = User::orderBy('apellidos', 'DESC')->pluck('apellidos', 'id');
         $my_persona = $aventura->users->pluck('id')->ToArray();
         
         return response()->json([

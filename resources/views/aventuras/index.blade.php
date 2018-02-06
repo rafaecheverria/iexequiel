@@ -23,4 +23,5 @@
 </div>
 @include('aventuras.up-aventura')
 @include('aventuras.add-user-aventura')
+@include('aventuras.view-user-aventura')
 @endsection
