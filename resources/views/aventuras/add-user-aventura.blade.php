@@ -17,9 +17,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <select id="select-add-user-aventura" name="add_user_aventura[]" data-style="select-with-transition" class="form-control selectpicker" data-live-search="true" multiple="multiple">
-                                                 @foreach($personas as $persona)
-                                                    <option value="{{ $persona->id }}">{{ $persona->apellidos }} {{ $persona->nombres }}</option>
-                                                @endforeach
+                                                 
                                             </select> 
                                         </div>
                                     </div>

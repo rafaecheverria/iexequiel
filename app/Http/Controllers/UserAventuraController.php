@@ -47,15 +47,14 @@ class UserAventuraController extends Controller
      */
     public function show($id)
     {
-        $aventuras = Aventura::find($id)->load('users');
+        $users = Aventura::find($id)->load('users');
        /* $users    = User::whereHas('aventuras', function($q) {
                             $q->where('id', $id);
                      })->get();*/
-
-        return datatables()->of($aventuras->users)
-                ->addColumn('action', function ($user) {
-                return '<a href="#" onclick="loadModalAventura('.$user->id.')" data-toggle="modal" data-target="#up-aventura-modal" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a><a href="#" onclick="loadModalUserAventura('.$user->id.')" data-toggle="modal" data-target="#view-user-aventura-modal" class="btn btn-simple btn-success btn-icon"><i class="material-icons">group</i></a><a href="#" onclick="loadModalAddAventura('.$user->id.')" data-toggle="modal" data-target="#add-user-aventura-modal" class="btn btn-simple btn-info btn-icon"><i class="material-icons">group_add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
-            })->make(true);
+        return datatables()->of($users->users)
+         ->addColumn('action', function ($user) {
+                return '<a href="#" onclick="delete_user_aventura('.$user->id.')" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
+        })->make(true);
     }
 
     /**
@@ -105,6 +104,11 @@ class UserAventuraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->aventuras()->detach();
+        return response()->json([
+            'success' => true,
+            "message" => "El aventurero ha sido eliminado !"
+        ]);
     }
 }

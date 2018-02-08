@@ -1,6 +1,7 @@
 $(document).ready(function() {
     personas();
     aventuras();
+    historial();
 
     $(".fecha-nacimiento").datepicker({
         format: 'yyyy/mm/dd',
@@ -9,6 +10,19 @@ $(document).ready(function() {
       'show', function() {          
         // Obtener valores actuales z-index de cada elemento
         var zIndexModal = $('#up-persona-modal').css('z-index');
+        var zIndexFecha = $('.datepicker').css('z-index');
+            // alert(zIndexModal + zIndexFEcha);
+            // Re asignamos el valor z-index para mostrar sobre la ventana modal
+            $('.datepicker').css('z-index',zIndexModal+1);
+    })
+
+     $("#fecha_add").datepicker({
+        format: 'yyyy/mm/dd',
+        showAnim: 'fade'
+    }).on(
+      'show', function() {          
+        // Obtener valores actuales z-index de cada elemento
+        var zIndexModal = $('#up-aventura-modal').css('z-index');
         var zIndexFecha = $('.datepicker').css('z-index');
             // alert(zIndexModal + zIndexFEcha);
             // Re asignamos el valor z-index para mostrar sobre la ventana modal
@@ -52,7 +66,33 @@ $(document).ready(function() {
             }
         })
     })
-})
+
+$( "#btn-add-user-aventura" ).click(function(event){ 
+        event.preventDefault();
+        var id= $( '#id_av' ).val()
+        var route = "/user-aventura/"+id+"";
+        var dataString  = $( '#form-add-user-aventura' ).serializeArray();
+        console.log(dataString)
+        $.ajax({
+            url: route,
+            type: 'PUT',
+            datatype: 'json',
+            data:dataString,
+            success:function(data){
+                 $('#aventuras').DataTable().ajax.reload();
+                // $('#userAventuras').DataTable().ajax.reload();
+                 $("#add-user-aventura-modal").modal("hide");
+                 $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000})
+            },
+             error:function(data){
+              var error = data.responseJSON.errors;
+                for(var i in error){
+                    var message = error[i];
+                    $.notify({icon: "add_alert", message: message},{type: 'warning', timer: 1000})
+                }
+            }
+        })
+    })
 
 $( "#update-aventura" ).click(function(event){ 
         event.preventDefault();
@@ -79,22 +119,47 @@ $( "#update-aventura" ).click(function(event){
         })
     })
 
-$( "#btn-add-user-aventura" ).click(function(event){ 
+$( "#btn-add-user" ).click(function(event){ 
         event.preventDefault();
-        var id= $( '#id_av' ).val()
-        var route = "/user-aventura/"+id+"";
-        var dataString  = $( '#form-add-user-aventura' ).serializeArray();
+        var route = "/personas";
+        var dataString  = $( '#form-user-add' ).serializeArray();
         console.log(dataString)
         $.ajax({
             url: route,
-            type: 'PUT',
+            type: 'POST',
+            datatype: 'json',
+            data:dataString,
+            success:function(data){
+                 $('#personas').DataTable().ajax.reload();
+                 $("#add-persona-modal").modal("hide");
+                 $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000})
+                 $('#form-user-add')[0].reset();
+            },
+             error:function(data){
+              var error = data.responseJSON.errors;
+                for(var i in error){
+                    var message = error[i];
+                    $.notify({icon: "add_alert", message: message},{type: 'warning', timer: 1000})
+                }
+            }
+        })
+    })
+
+$( "#add-aventura" ).click(function(event){ 
+        event.preventDefault();
+        var route = "/aventuras";
+        var dataString  = $( '#form-aventura-add' ).serializeArray();
+        console.log(dataString)
+        $.ajax({
+            url: route,
+            type: 'POST',
             datatype: 'json',
             data:dataString,
             success:function(data){
                  $('#aventuras').DataTable().ajax.reload();
-                 $('#userAventuras').DataTable().ajax.reload();
-                 $("#add-user-aventura-modal").modal("hide");
+                 $("#add-aventura-modal").modal("hide");
                  $.notify({icon: "add_alert", message: data.message},{type: 'success', timer: 1000})
+                 $('#form-aventura-add')[0].reset();
             },
              error:function(data){
               var error = data.responseJSON.errors;
@@ -129,6 +194,80 @@ $( "#update-encuesta" ).click(function(event){
         })
     })
 
+})
+
+
+function delete_persona(id)
+{
+    event.preventDefault();
+    var popup = confirm("¿ Esta seguro de eliminar esta persona ?")
+    var route = "/personas/"+id+"";
+    var csrf_token = $('meta[name="csrf-token"]').attr('content');
+    if(popup ==true){
+     $.ajax({
+            url: route,
+            type: 'POST',
+            data: {'_method' : 'DELETE', '_token' : csrf_token},
+            success:function(data){
+                $('#personas').DataTable().ajax.reload();
+                $.notify({icon: "add_alert", message: data.message},{type: 'info', timer: 1000});
+            }, 
+            error:function(){
+                alert('la operación falló');
+            }
+       });
+    }
+}
+
+function delete_aventura(id)
+{
+    event.preventDefault();
+    var popup = confirm("¿ Esta seguro de eliminar esta aventura ?")
+    var route = "/aventuras/"+id+"";
+    var csrf_token = $('meta[name="csrf-token"]').attr('content');
+    if(popup ==true){
+     $.ajax({
+            url: route,
+            type: 'POST',
+            data: {'_method' : 'DELETE', '_token' : csrf_token},
+            success:function(data){
+                $('#aventuras').DataTable().ajax.reload();
+                $.notify({icon: "add_alert", message: data.message},{type: 'info', timer: 1000});
+            }, 
+            error:function(){
+                alert('la operación falló');
+            }
+       });
+    }
+}
+
+function delete_user_aventura(id)
+{
+    event.preventDefault();
+    var popup = confirm("¿ Esta seguro de eliminar a este usuario de la aventura ?")
+    var route = "/user-aventura/"+id+"";
+    var csrf_token = $('meta[name="csrf-token"]').attr('content');
+    if(popup ==true){
+     $.ajax({
+            url: route,
+            type: 'POST',
+            data: {'_method' : 'DELETE', '_token' : csrf_token},
+            success:function(data){
+              console.log(data)
+                $('#userAventuras').DataTable().ajax.reload();
+                $.notify({icon: "add_alert", message: data.message},{type: 'info', timer: 1000});
+            }, 
+            error:function(){
+                alert('la operación falló');
+            }
+       });
+    }
+}
+
+
+
+
+
 function loadModalUserAventura(id)
 {
     event.preventDefault();
@@ -150,19 +289,17 @@ function loadModalUserAventura(id)
         "columns":[
             {data: 'nombres', name: 'nombres'},
             {data: 'apellidos', name: 'apellidos'},
+            {data: 'telefono', name: 'telefono'},
             {data: 'action', name: 'action', orderable: false, searchable: false, class:"text-right"}
         ],
     })
-
-
-
 }
 
 function loadModalAddAventura(id)
 {
     event.preventDefault();
-   var route = "/user-aventura/"+id+"/edit";
-   var csrf_token = $('meta[name="csrf-token"]').attr('content');
+    var route = "/user-aventura/"+id+"/edit";
+    var csrf_token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
            url: route,
            type: 'GET',
@@ -190,7 +327,6 @@ function loadModalAddAventura(id)
 
 function loadModalUser(id)
 {
-    //alert(id)
    event.preventDefault();
    var route = "/personas/"+id+"/edit";
    var csrf_token = $('meta[name="csrf-token"]').attr('content');
@@ -215,7 +351,6 @@ function loadModalUser(id)
     })
 }
 
-
 function loadModalAventura(id)
 {
     //alert(id)
@@ -237,7 +372,6 @@ function loadModalAventura(id)
           }
     })
 }
-
 
 function loadEncuestaUser(id)
 {
@@ -301,8 +435,46 @@ var aventuras = function()
         "processing": true,
         "serverSide": true,
         "order": [[ 2, "asc" ]],
+        "dom": 'Bfrtip',
         "ajax": {
              "url": "aventuras/show",
+            },
+        "pagingType": "simple_numbers",
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "Todos"]
+        ],
+        "language": {
+            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
+        "buttons": [
+            {
+                "text": 'My button',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Button activated' );
+                }
+            }
+        ],
+        //"responsive": true,
+        "columns":[
+            {data: 'fecha', name: 'fecha'},
+            {data: 'nombre', name: 'nombre'},
+            {data: 'estado', name: 'estado'},
+            {data: 'action', name: 'action', orderable: false, searchable: false, class:"text-right"}
+        ],
+    })
+  }
+
+
+  var historial = function()
+   {
+        var table = $('#historial').DataTable({
+        "headers": {'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+        "processing": true,
+        "serverSide": true,
+        "order": [[ 2, "asc" ]],
+        "ajax": {
+             "url": "historial/show",
             },
         "pagingType": "simple_numbers",
         "lengthMenu": [
@@ -320,7 +492,4 @@ var aventuras = function()
             {data: 'action', name: 'action', orderable: false, searchable: false, class:"text-right"}
         ],
     })
-  }
-
-
-
+}

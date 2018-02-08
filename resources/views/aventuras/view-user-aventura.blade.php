@@ -15,6 +15,7 @@
                                     <tr>
                                         <th>Nombres</th>
                                         <th>Apeliidos</th>
+                                        <th>Teléfono</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>

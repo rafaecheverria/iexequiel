@@ -1,3 +1,4 @@
+
 <div class="material-datatables">
     <table id="personas" class="table dataTable table-responsive nowrap dataTables_wrapper table-striped table-no-bordered table-hover">
         <thead>

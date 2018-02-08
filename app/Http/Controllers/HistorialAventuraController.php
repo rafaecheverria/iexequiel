@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Aventura;
 use App\User;
+use Illuminate\Http\Request;
 
-class DatosEncuestaController extends Controller
+class HistorialAventuraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class DatosEncuestaController extends Controller
      */
     public function index()
     {
-        //
+        return view("historial.index");
     }
 
     /**
@@ -34,17 +34,9 @@ class DatosEncuestaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        if($request->ajax()){
-            $user = new User($request->all());
-            $user->estado = "pendiente";
-            $user->save();
-            return response()->json([
-                "message" => 'Sus datos han sido guardados, debe completar el siguiente formulario para finalizar la inscripción',
-                "id_user" => $user->id
-                ]);
-        }
+        //
     }
 
     /**
@@ -55,7 +47,12 @@ class DatosEncuestaController extends Controller
      */
     public function show($id)
     {
-        //
+        $aventuras = Aventura::select(['id','nombre','fecha','estado'])->where('estado', 'ejecutado');
+
+        return datatables()->of($aventuras)
+                ->addColumn('action', function ($aventura) {
+                return '<a href="#" onclick="loadModalAventura('.$aventura->id.')" data-toggle="modal" data-target="#up-aventura-modal" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a><a href="#" onclick="loadModalUserAventura('.$aventura->id.')" data-toggle="modal" data-target="#view-user-aventura-modal" class="btn btn-simple btn-success btn-icon"><i class="material-icons">group</i></a>';
+            })->make(true);
     }
 
     /**

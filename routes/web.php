@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function(){
 	Route::resource('/personas', 'PersonasController');
 	Route::resource('/aventuras', 'AventuraController');
 	Route::resource('/user-aventura', 'UserAventuraController');
+	Route::resource('/historial', 'HistorialAventuraController');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

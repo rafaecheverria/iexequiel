@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
 class PersonasController extends Controller
@@ -33,9 +34,16 @@ class PersonasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        if($request->ajax()){
+            $user = new User($request->all());
+            $user->estado = "pendiente";
+            $user->save();
+            return response()->json([
+                "message" => "El aventurero  se agregó correctamente !"
+                ]);
+        }
     }
 
     /**
@@ -55,7 +63,7 @@ class PersonasController extends Controller
                 ->addColumn('action', function ($user) {
                 return '<a href="#" onclick="loadModalUser('.$user->id.')" data-toggle="modal" data-target="#up-persona-modal" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a>
                         <a href="#" onclick="loadEncuestaUser('.$user->questions_id.')" data-toggle="modal" data-target="#up-encuesta-modal" class="btn btn-simple btn-success btn-icon"><i class="material-icons">description</i></a>
-                        <a href="#" onclick="eliminar_doc('.$user->id.')" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
+                        <a href="#" onclick="delete_persona('.$user->id.')" class="btn btn-simple btn-danger btn-icon remove-item"><i class="material-icons">close</i></a>';
             })->make(true);
     }
 
@@ -110,6 +118,11 @@ class PersonasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        User::destroy($id);
+        return response()->json([
+            'success' => true,
+            "message" => "El aventurero ha sido eliminado del sistema exitosamente !"
+        ]);
     }
 }

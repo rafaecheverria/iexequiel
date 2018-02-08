@@ -2,6 +2,7 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
+    	<a href="#" data-toggle="modal" data-target="#add-aventura-modal" class="btn btn-info pull-right">Agregar</a>
         <div class="card">
 			<div class="card-bootom">
 	    		<div class="row">
@@ -24,4 +25,5 @@
 @include('aventuras.up-aventura')
 @include('aventuras.add-user-aventura')
 @include('aventuras.view-user-aventura')
+@include('aventuras.add-aventura')
 @endsection
